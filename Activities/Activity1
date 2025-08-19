@@ -3,7 +3,7 @@ public class Main {
         int num1 = 20;
         int num2 = 10;
 
-        // Addition of
+        // Addition
         if (num1 > num2) {
             System.out.println("Addition: " + (num1 + num2));
         } else {
