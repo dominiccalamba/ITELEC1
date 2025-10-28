@@ -1,1 +1,141 @@
+package com.example.androiduilab6; 
 
+import androidx.appcompat.app.AppCompatActivity; 
+
+import android.annotation.SuppressLint; 
+
+import android.os.Bundle; 
+
+import android.widget.Button; 
+
+import android.widget.EditText; 
+
+import android.widget.Toast; 
+
+ 
+
+public class MainActivity extends AppCompatActivity { 
+
+ 
+
+    EditText etEmail, etPassword; 
+
+    Button btnLogin; 
+
+ 
+
+    @SuppressLint("MissingInflatedId") 
+
+    @Override 
+
+    protected void onCreate(Bundle savedInstanceState) { 
+
+        super.onCreate(savedInstanceState); 
+
+        // Load your correct XML layout here 
+
+        setContentView(R.layout.activity_main); // or activity_exercise6 
+
+ 
+
+        // Now initialize the views 
+
+        etEmail = findViewById(R.id.etEmail); 
+
+        etPassword = findViewById(R.id.etPassword); 
+
+        btnLogin = findViewById(R.id.btnLogin); 
+
+ 
+
+        // Button click logic 
+
+        btnLogin.setOnClickListener(v -> { 
+
+            String email = etEmail.getText().toString().trim(); 
+
+            String pass = etPassword.getText().toString().trim(); 
+
+ 
+
+            if (email.isEmpty() || pass.isEmpty()) { 
+
+                Toast.makeText(this, "Please enter both fields", Toast.LENGTH_SHORT).show(); 
+
+            } else { 
+
+                Toast.makeText(this, "Welcome, " + email, Toast.LENGTH_SHORT).show(); 
+
+            } 
+
+        }); 
+
+    } 
+
+} 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Shape 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+<?xml version="1.0" encoding="utf-8"?> 
+
+<androidx.constraintlayout.widget.ConstraintLayout 
+
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
+
+    xmlns:tools="http://schemas.android.com/tools" 
+
+    android:layout_width="match_parent" 
+
+    android:layout_height="match_parent" 
+
+    android:background="#064420" 
+
+    tools:context=".MainActivity"> 
+
+ 
+
+    <!-- Card container --> 
+
+    <LinearLayout 
+
+        android:id="@+id/loginCard" 
+
+        android:layout_width="0dp" 
+
+        android:layout_height="0dp" 
+
+        android:orientation="vertical" 
+
+        android:background="@drawable/card_background" 
+
+        android:padding="24dp" 
+
+        android:layout_margin="24dp" 
+
+        android:elevation="6dp" 
+
+        app:layout_constraintTop_toTopOf="parent" 
+
+        app:layout_constraintBottom_toBottomOf="parent" 
