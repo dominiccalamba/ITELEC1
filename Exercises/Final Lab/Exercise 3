@@ -1,1 +1,363 @@
+package com.example.myandroiduilab3; 
 
+import androidx.annotation.NonNull; 
+
+import androidx.appcompat.app.AppCompatActivity; 
+
+import android.os.Bundle; 
+
+import android.view.View; 
+
+import android.view.ViewGroup; 
+
+import android.widget.AdapterView; 
+
+import android.widget.ArrayAdapter; 
+
+import android.widget.AutoCompleteTextView; 
+
+import android.widget.Spinner; 
+
+import android.widget.TextView; 
+
+import android.graphics.Color; 
+
+ 
+
+public class MainActivity extends AppCompatActivity { 
+
+ 
+
+    @Override 
+
+    protected void onCreate(Bundle savedInstanceState) { 
+
+        super.onCreate(savedInstanceState); 
+
+        setContentView(R.layout.activity_main); 
+
+ 
+
+        AutoCompleteTextView autoCountry = findViewById(R.id.autoCountry); 
+
+        Spinner spinner = findViewById(R.id.spinnerOptions); 
+
+ 
+
+        // List of countries 
+
+        String[] countries = {"Philippines", "Japan", "Spain", "Italy", "Taiwan", "South Korea", "Russia", "England", "Thailand", "China"}; 
+
+ 
+
+ 
+
+ 
+
+        // AutoComplete suggestions 
+
+        ArrayAdapter<String> countryAdapter = new ArrayAdapter<>( 
+
+                this, 
+
+                android.R.layout.simple_dropdown_item_1line, 
+
+                countries 
+
+        ); 
+
+        autoCountry.setAdapter(countryAdapter); 
+
+ 
+
+        // Spinner options 
+
+        String[] options = {"Select your country","Philippines", "Japan", "Spain", "Italy", "Taiwan", "South Korea", "Russia", "England", "Thailand", "China"}; 
+
+ 
+
+         
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>( 
+
+                this, 
+
+                android.R.layout.simple_spinner_item, 
+
+                options 
+
+        ) { 
+
+            @NonNull 
+
+            @Override 
+
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) { 
+
+                View view = super.getView(position, convertView, parent); 
+
+                ((TextView) view).setTextColor(Color.BLACK);  
+
+                return view; 
+
+            } 
+
+ 
+
+            @Override 
+
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) { 
+
+                View view = super.getDropDownView(position, convertView, parent); 
+
+                ((TextView) view).setTextColor(Color.BLACK); // dropdown text color 
+
+                return view; 
+
+            } 
+
+        }; 
+
+ 
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+
+        spinner.setAdapter(spinnerAdapter); 
+
+ 
+
+        // When user selects from Spinner it autofill the AutoCompleteTextView 
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { 
+
+            @Override 
+
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { 
+
+                String selectedCountry = parent.getItemAtPosition(position).toString(); 
+
+                if (!selectedCountry.equals("Select your country")) { 
+
+                    autoCountry.setText(selectedCountry); 
+
+                } else { 
+
+                    autoCountry.setText(""); 
+
+                } 
+
+            } 
+
+ 
+
+            @Override 
+
+            public void onNothingSelected(AdapterView<?> parent) { 
+
+                // Nothing 
+
+            } 
+
+        }); 
+
+    } 
+
+} 
+
+ 
+
+ 
+ 
+
+Shape 
+
+ 
+ 
+ 
+<?xml version="1.0" encoding="utf-8"?> 
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+
+    xmlns:app="http://schemas.android.com/apk/res-auto" 
+
+    xmlns:tools="http://schemas.android.com/tools" 
+
+    android:layout_width="match_parent" 
+
+    android:layout_height="match_parent" 
+
+    android:background="#1B5E20" 
+
+    tools:context=".MainActivity"> 
+
+ 
+
+    <TextView 
+
+        android:id="@+id/textViewTitle" 
+
+        android:layout_width="wrap_content" 
+
+        android:layout_height="wrap_content" 
+
+        android:text="@string/please_enter_your_name_and_country" 
+
+        android:textSize="20sp" 
+
+        android:textStyle="bold" 
+
+        android:textColor="#000000" 
+
+        app:layout_constraintTop_toTopOf="parent" 
+
+        app:layout_constraintBottom_toTopOf="@+id/textViewName" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="40dp" /> 
+
+ 
+
+    <TextView 
+
+        android:id="@+id/textViewName" 
+
+        android:layout_width="wrap_content" 
+
+        android:layout_height="wrap_content" 
+
+        android:text="@string/Your_Name" 
+
+        android:textColor="#000000" 
+
+        android:textStyle="bold" 
+
+        android:textSize="18sp" 
+
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="40dp" /> 
+
+ 
+
+    <EditText 
+
+        android:id="@+id/editTextName" 
+
+        android:layout_width="250dp" 
+
+        android:layout_height="50dp" 
+
+        android:autofillHints="#000000" 
+
+        android:hint="@string/Enter_Your_Name" 
+
+        android:inputType="textPersonName" 
+
+        android:textColor="#000000" 
+
+        android:textColorHint="#000000" 
+
+        android:background="#FFFFFF" 
+
+        android:padding="8dp" 
+
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="8dp" /> 
+
+ 
+
+    <TextView 
+
+        android:id="@+id/textViewCountry" 
+
+        android:layout_width="wrap_content" 
+
+        android:layout_height="wrap_content" 
+
+        android:text="@string/type_or_select_your_country" 
+
+        android:textColor="#000000" 
+
+        android:textStyle="bold" 
+
+        android:textSize="18sp" 
+
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="20dp" /> 
+
+ 
+
+    <AutoCompleteTextView 
+
+        android:id="@+id/autoCountry" 
+
+        android:layout_width="250dp" 
+
+        android:layout_height="50dp" 
+
+        android:hint="@string/Your_Country" 
+
+        android:textColor="#000000" 
+
+        android:textColorHint="#000000" 
+
+        android:background="#FFFFFF" 
+
+        android:padding="8dp" 
+
+        android:completionThreshold="1" 
+
+        android:inputType="text" 
+
+        app:layout_constraintTop_toBottomOf="@+id/textViewCountry" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="8dp" /> 
+
+ 
+
+    <Spinner 
+
+        android:id="@+id/spinnerOptions" 
+
+        android:layout_width="250dp" 
+
+        android:layout_height="50dp" 
+
+        android:background="#FFFFFF" 
+
+        android:popupBackground="#FFFFFF" 
+
+        app:layout_constraintTop_toBottomOf="@+id/autoCountry" 
+
+        app:layout_constraintStart_toStartOf="parent" 
+
+        app:layout_constraintEnd_toEndOf="parent" 
+
+        android:layout_marginTop="20dp" /> 
+
+ 
+
+</androidx.constraintlayout.widget.ConstraintLayout> 
+
+ 
