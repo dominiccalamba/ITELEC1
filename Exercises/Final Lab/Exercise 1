@@ -1,1 +1,64 @@
+package com.example.myandroiduilab;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+    }
+
+}
+
+
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:gravity="center"
+
+    android:background="#2E7D32"
+
+    tools:context=".MainActivity">
+
+
+    <TextView
+
+        android:id="@+id/textViewWelcome"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:text="Welcome to Android UI"
+
+        android:textColor="#FFFFFF"
+
+        android:textSize="24sp"
+
+        android:textStyle="bold" />
+
+</LinearLayout>
