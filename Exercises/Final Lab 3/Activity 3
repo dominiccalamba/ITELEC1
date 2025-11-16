@@ -1,1 +1,3 @@
-
+ Log.d("DEBUG_TAG", "Debugging message");
+Log.w("DEBUG_TAG", "Warning message");
+Log.e("DEBUG_TAG", "Error message");
